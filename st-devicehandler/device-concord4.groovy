@@ -1,0 +1,275 @@
+/**
+ *  Concord 4 Device Handler
+ *
+ *  Scott Dozier 4/1/2016
+ */
+
+metadata {
+	// Automatically generated. Make future change here.
+	definition (name: "Concord4", author: "scdozier", namespace: "scdozier") {
+        capability "Polling"
+        capability "Lock"
+        capability "Refresh"
+        command "armstay"
+        command "armaway"
+        command "Disarm"
+        command "armSilent"
+        command "armLoud"
+        command "armBypass"
+        command "armRegular"
+        command "update"
+        
+        attribute "armStatus", "string"
+	}
+
+	simulator {
+		// TODO: define status and reply messages here
+	}
+    preferences {
+        input("concord_server_ip_address", "text", title: "IP", description: "Concord 4 Server IP Address",defaultValue: "8.8.8.8")
+        input("concord_server_port", "number", title: "Port", description: "Concord 4 Server Port Number (8066)",defaultValue: 8066)
+        input("concord_server_api_password", "text", title: "API Password", description: "Concord 4 Server API PW",defaultValue: "")
+    }
+	tiles (scale: 2){
+      multiAttributeTile(name:"ArmTile", type:"generic", width:6, height:4) {
+        tileAttribute("device.lock", key: "PRIMARY_CONTROL") {
+            attributeState("unlocked", label: 'DISARMED', action: "armstay", icon: "st.Home.home3", backgroundColor: "#79b821", nextState: "locking")
+ 			attributeState("locking", label: 'ARMING', action: "armstay", icon: "st.Home.home3", backgroundColor: "#ffa81e")
+ 			attributeState("unlocking", label: 'DISARMING', action: "armstay", icon: "st.Home.home3", backgroundColor: "#ffa81e")
+            attributeState("locked", label: 'ARMED', action: "Disarm", icon: "st.Home.home3", backgroundColor: "#ff381e")
+        }
+   			tileAttribute("device.armStatus", key: "SECONDARY_CONTROL") {
+    			attributeState("default", label:'${currentValue}')
+  			}
+        }
+        standardTile("silent", "device.silent", width: 2, height: 2,canChangeIcon: true, inactiveLabel: false) {        						
+			state "silent", label: 'silent', action:"armLoud", icon: "st.Outdoor.outdoor9", backgroundColor: "#ffa81e" , nextState : "loud"   
+            state "loud", label: 'loud', action: "armSilent", icon: "st.Outdoor.outdoor10", backgroundColor: "#79b821" , nextState: "silent"           
+		}        
+        standardTile("bypass", "device.bypass", width: 2, height: 2, canChangeIcon: true,inactiveLabel: false) {        						
+			state "disable", label: 'Disabled', action: "armBypass", icon: "st.Outdoor.outdoor10", backgroundColor: "#79b821" , nextState: "enable"
+			state "enable", label: 'Enabled', action:"armRegular", icon: "st.Outdoor.outdoor9", backgroundColor: "#ffa81e" , nextState: "disable"  
+		}                
+        standardTile("Zone 1", "device.zone1", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
+        	state "closed", label: 'Garage Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+			state "open", label: 'Garage Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+		}  
+        standardTile("Zone 2", "device.zone2",  width: 2, height: 2,inactiveLabel: false, decoration: "flat") {			
+			state "closed", label: 'Front Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Front Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 3", "device.zone3", width: 2, height: 2, inactiveLabel: false,decoration: "flat") {
+        	state "closed", label: 'Back Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+			state "open", label: 'Back Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+		}  
+        standardTile("Zone 4", "device.zone4",  width: 2, height: 2,inactiveLabel: false) {			
+			state "closed", label: 'Living Room\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Living Room\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 5", "device.zone5",  width: 2, height: 2,inactiveLabel: false) {			
+			state "closed", label: 'Family Room\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Family Room\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 6", "device.zone6", width: 2, height: 2, inactiveLabel: false) {			
+			state "closed", label: 'Kitchen Window\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Kitchen Window', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 7", "device.zone7", width: 2, height: 2, inactiveLabel: false) {
+        	state "closed", label: 'Kitchen Glass Break', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+			state "open", label: 'Kitchen Glass Break', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+		}  
+        standardTile("Zone 8", "device.zone8",  width: 2, height: 2,inactiveLabel: false) {			
+			state "closed", label: 'Foyer Motion\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Foyer Motion\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 9", "device.zone9",  width: 2, height: 2,inactiveLabel: false) {
+        	state "closed", label: 'Downstairs Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+			state "open", label: 'Downstairs Fire\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+		}  
+        standardTile("Zone 10", "device.zone10", width: 2, height: 2, inactiveLabel: false) {			
+			state "closed", label: 'Bedroom Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Bedroom Fire\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 13", "device.zone13",  width: 2, height: 2,inactiveLabel: false) {			
+			state "closed", label: 'Office Window 1', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Office Window 1', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 14", "device.zone14", width: 2, height: 2, inactiveLabel: false) {			
+			state "closed", label: 'Office Window 2', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Office Window 2', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+        standardTile("Zone 15", "device.zone15",  width: 2, height: 2,inactiveLabel: false) {			
+			state "closed", label: 'Office Window 3', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
+            state "open", label: 'Office Window 3', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+		}  
+		standardTile("refresh", "device.alarmMode", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
+			state "default", action:"polling.poll", icon:"st.secondary.refresh"
+        }
+	}
+    
+    main "ArmTile"
+    details(["ArmTile","Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5", "Zone 6", "Zone 7", "Zone 8", "Zone 9", "Zone 10", "Zone 13",
+    "Zone 14","Zone 15", "refresh", "silent" ])
+}
+
+// parse events into attributes
+def parse(String description) {
+	log.debug "Parsing '${description}'"
+ 
+}
+
+def update(attribute,state) {
+    log.debug "update state, request: attribute: ${attribute}  state: ${state}"
+    def currentValues = device.currentValue(attribute)
+    if(state != currentValues as String) {
+    	log.debug "changing state.."
+    	sendEvent(name: attribute, value: state)
+    }
+    if(attribute == "armstatus") {
+        	log.debug "changing armstatus.."
+    	sendEvent(name: "currentState", value: state)
+        if(state == "disarmed")
+        {
+        	sendEvent(name: "lock", value: "unlocked")
+        }
+        else if (state == "stay" )
+        {
+        	sendEvent(name: "lock", value: "locked")
+        }
+        else if (state == "away") 
+        {
+            sendEvent(name: "lock", value: "locked")
+
+        }
+        
+    }
+    if(attribute.startsWith("zone")) {
+       	log.debug "changing zone staus.."
+		sendEvent(name: attribute, value: state)
+        }
+        
+
+    }
+
+def installed()
+{
+	state.bLoud = "False"
+}
+
+def updated()
+{
+
+}
+
+
+// handle commands
+def poll() {
+}
+
+def armSilent()
+{
+	state.bLoud = "False"
+}
+
+def armLoud()
+{
+	state.bLoud = "True"
+}
+
+def armBypass()
+{
+	state.bBypass = "True"
+}
+
+def armRegular()
+{
+	state.bBypass = "False"
+}
+
+def lock() {
+	armstay()
+}
+
+def unlock(){
+	Disarm()
+}
+
+def armstay() {
+    if (device.currentValue("lock") == "unlocked")
+    {
+    	sendEvent(name: "lock", value: "locking")
+		log.debug "Executing 'ArmStay'"
+        if( state.bLoud == "False" )
+        {
+            return request('/arm/stay')
+        }
+        else 
+        {
+
+            return request('/arm/stay/loud')
+        }
+    }
+}
+
+def armaway() {
+    if (device.currentValue("lock") == "unlocked")
+    {
+        log.debug "Executing 'ArmAway'"
+     	sendEvent(name: "lock", value: "locking")
+        if( state.bLoud == "False" )
+        {
+            return request('/arm/away')
+        }
+        else 
+        {
+            return request('/arm/away/loud')
+        }
+    }
+}
+
+def Disarm() {
+    if (device.currentValue("lock") == "locked")
+    {
+        log.debug "Executing 'Disarm'"
+    	sendEvent(name: "lock", value: "unlocking")
+        if( state.bLoud == "False" )
+        {
+            return request('/disarm')
+        }
+        else
+        {
+            return request('/disarm/loud')
+        }
+    }
+}
+
+def request(request) {
+	log.debug("Request:'${request}'")
+	def userpassascii = "admin:${concord_server_api_password}"
+    def userpass = "Basic " + userpassascii.encodeAsBase64().toString()
+    def hosthex = convertIPtoHex(concord_server_ip_address)
+    def porthex = convertPortToHex(concord_server_port)
+    log.debug("${device.deviceNetworkId}")
+    def hubAction = new physicalgraph.device.HubAction(
+   	 		'method': 'POST',
+    		'path': "/concord${request}"+"&apiserverurl="+java.net.URLEncoder.encode(apiServerUrl("/api/smartapps/installations"), "UTF-8"),
+        	'body': '',
+        	'headers': [ HOST: "${hosthex}:${porthex}" , Authorization:userpass]
+		)
+
+    log.debug hubAction
+    return hubAction
+}
+
+
+private String convertIPtoHex(ipAddress) {
+	log.debug('convertIPtoHex:'+"${ipAddress}")
+    String hex = ipAddress.tokenize( '.' ).collect {  String.format( '%02X', it.toInteger() ) }.join()
+    return hex
+}
+
+private String convertPortToHex(port) {
+	log.debug('convertIPtoHex:'+"${port}")
+	String hexport = port.toString().format( '%04X', port.toInteger() )
+    return hexport
+}
