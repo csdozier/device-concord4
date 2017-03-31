@@ -1,0 +1,118 @@
+2016-04-01 22:25:53,875 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-01 22:25:53,876 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-01 22:25:53,876 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-01 22:25:53,877 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-01 22:26:00,803 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:45:08,450 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:45:08,451 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:45:08,451 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:45:08,454 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:45:09,346 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:45:09,422 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:45:09,705 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 16:45:09,738 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 16:45:40,873 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:45:41,730 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:45:41,730 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:45:41,730 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:45:41,735 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:45:42,094 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 16:45:42,133 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:45:42,152 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 16:45:42,183 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:45:45,112 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:51:39,327 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:51:39,327 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:51:39,327 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:51:39,330 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:51:40,161 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:51:40,195 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 16:51:40,219 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 16:51:40,312 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:51:41,412 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:54:04,996 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:54:04,997 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:54:04,997 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:54:05,008 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:54:06,613 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:54:07,500 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 16:54:07,572 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:54:09,386 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 16:56:00,276 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:56:01,684 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:56:01,684 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:56:01,684 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:56:01,687 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:56:02,910 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:56:04,265 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:56:04,332 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 16:56:06,084 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 16:57:43,936 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:57:54,467 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:57:54,467 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:57:54,467 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:57:54,486 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:57:55,655 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:58:05,316 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 16:59:21,781 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 16:59:22,566 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 16:59:22,566 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 16:59:22,566 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 16:59:22,571 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 16:59:24,940 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 16:59:33,290 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 17:02:04,191 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:02:05,034 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:02:05,034 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:02:05,034 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:02:05,035 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:02:08,085 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 17:02:16,893 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 17:03:45,692 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:03:46,784 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:03:46,784 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:03:46,785 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:03:46,800 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:03:48,567 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/open
+2016-04-08 17:03:57,923 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone13/closed
+2016-04-08 17:04:06,979 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:04:21,781 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:04:21,781 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:04:21,781 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:04:21,797 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:04:22,211 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 17:04:24,730 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:04:31,454 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:04:31,455 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:04:31,455 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:04:31,473 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:04:31,858 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone15/closed
+2016-04-08 17:06:00,399 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:06:01,645 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:06:01,646 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:06:01,646 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:06:01,662 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:06:02,673 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/open
+2016-04-08 17:06:12,075 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone14/closed
+2016-04-08 17:06:21,319 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:06:22,115 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:06:22,116 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:06:22,116 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:06:22,124 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:06:23,355 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone15/open
+2016-04-08 17:06:33,382 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone15/closed
+2016-04-08 17:07:04,765 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-08 17:07:05,603 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-08 17:07:05,603 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-08 17:07:05,603 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-08 17:07:05,619 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-08 17:07:07,728 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone7/open
+2016-04-08 17:07:17,671 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone7/closed
+2016-04-08 17:10:25,527 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
+2016-04-09 14:57:17,570 [concordsvr.py:start_logger()] - INFO - Logging started [LEVEL: INFO]...
+2016-04-09 14:57:17,571 [concordsvr.py:updateStateOnServer()] - INFO - Panel Information: state: faulted
+2016-04-09 14:57:17,571 [concordsvr.py:startup()] - ERROR - Unable to start alarm panel interface: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+2016-04-09 14:57:17,587 [concordsvr.py:logger()] - INFO - Listening for HTTP(S) connections on port: 8066
+2016-04-09 14:57:18,581 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone7/open
+2016-04-09 14:57:28,289 [concordsvr.py:logger()] - INFO - TX -> https://graph.api.smartthings.com/api/smartapps/installations/bdcf758d-da82-47f7-88b9-fcb63a7e537d/concord/96eb3f97-7ed5-4e8c-bd5f-377972938d00/zone7/closed
+2016-04-09 14:58:14,407 [concordsvr.py:logger()] - INFO - Shutting down from Ctrl+C
