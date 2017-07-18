@@ -917,6 +917,7 @@ class ConcordHTTPServer(asyncore.dispatcher,Thread):
             elif path == '/':
                 channel.pushstatus(404, "Not found")
             elif '/concord/refresh' in path:
+                concord_interface.refreshPanelState("Reacting to web poll request...")
                 channel.pushok(json.dumps({'response' : 'Refreshing Concord...'}))
             elif '/concord/arm/stay' in path:
                 if path.split('/')[-1] == 'loud':

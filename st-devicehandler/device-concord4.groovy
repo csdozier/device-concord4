@@ -164,7 +164,9 @@ def updated()
 
 
 // handle commands
-def poll() {
+def poll()
+{
+    return request('/refresh')
 }
 
 def armSilent()
