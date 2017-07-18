@@ -1,11 +1,10 @@
 # device-concord4
 Concord 4 SmartThings Device Hander and SmartApp
 
-Fork from https://github.com/csdozier/device-concord4
+Sorry documentation is rather poor... 
 
-This fork is designed to have all the changes I've made to fix various bugs and enhance functionality.
+This is a project for connecting the Concord 4 alarm system to smartthings.   You will need a computer/rasperry pi/etc with a USB serial cable connected to the superbus 2000 automation module.
 
-This is a project for connecting the Concord 4 alarm system to SmartThings.  You will need a computer/rasperry pi/etc with a USB serial cable connected to the superbus 2000 automation module.
 
 Instructions:
 1.  Connect hardware (Usb serial ---> Superbus AM --- > Concord 4 Panel)
