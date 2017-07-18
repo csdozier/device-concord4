@@ -37,7 +37,7 @@ from concord import concord, concord_commands, concord_alarm_codes
 from concord.concord_commands import STAR, HASH, TRIPPED, FAULTED, ALARM, TROUBLE, BYPASSED
 
 log = logging.getLogger('root')
-version = 1.0
+version = 2.0
 
 def dict_merge(a, b):
     c = a.copy()
@@ -69,10 +69,11 @@ def start_logger():
         except ImportError:
             # Python 2
             import httplib as http_client
-        http_client.HTTPConnection.debuglevel = 1
-        requests_log = logging.getLogger("requests.packages.urllib3")
-        requests_log.setLevel(logging.DEBUG)
-        requests_log.propagate = True
+        # Disable debugging of HTTP calls. If there's an issue, re-enable this to see the trace of what is coming in / out
+        #http_client.HTTPConnection.debuglevel = 1
+        #requests_log = logging.getLogger("requests.packages.urllib3")
+        #requests_log.setLevel(logging.DEBUG)
+        #requests_log.propagate = True
 
 
 def logger(message, level = 'info'):
@@ -87,6 +88,32 @@ def logger(message, level = 'info'):
     elif 'warn' in level:
         log.warn(message)
 
+
+#
+# Send e-mail over GMAIL
+#
+def send_email(user, pwd, recipient, subject, body):
+    import smtplib
+
+    gmail_user = user
+    gmail_pwd = pwd
+    FROM = user
+    TO = recipient if type(recipient) is list else [recipient]
+    SUBJECT = subject
+    TEXT = body
+
+    # Prepare actual message
+    message = """From: %s\nTo: %s\nSubject: %s\n\n%s
+    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+    try:
+        server_ssl = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        server_ssl.ehlo()
+        server_ssl.login(gmail_user, gmail_pwd)
+        server_ssl.sendmail(FROM, TO, message)
+        server_ssl.close()
+        log.info("E-mail notification sent")
+    except Exception, ex:
+        log.error("E-mail notification failed to send: %s" % str(ex))
 
 def zonekey(zoneDev):
     """ Return internal key for supplied Indigo zone device. """
@@ -106,7 +133,7 @@ def any_if_blank(s):
 def isZoneErrState(state_list):
     for err_state in [ ALARM, FAULTED, TROUBLE, BYPASSED ]:
         if err_state in state_list:
-            return True;
+            return True
     return False
 
 def zoneStateChangedExceptTripped(old, new):
@@ -114,7 +141,6 @@ def zoneStateChangedExceptTripped(old, new):
     new = list(sorted(new)).remove(TRIPPED)
     return old != new
     
-
 
 #
 # Touchpad display when no data available
@@ -127,6 +153,8 @@ NO_DATA = '<NO DATA>'
 KEYPRESS_SILENT = [ 0x05 ]
 KEYPRESS_ARM_STAY = [ 0x28 ]
 KEYPRESS_ARM_AWAY = [ 0x27 ]
+KEYPRESS_ARM_STAY_LOUD = [ 0x02 ]
+KEYPRESS_ARM_AWAY_LOUD = [ 0x03 ]
 KEYPRESS_DISARM = [ 0x20 ]
 KEYPRESS_BYPASS = [ 0xb ] # '#'
 KEYPRESS_TOGGLE_CHIME = [ 7, 1 ]
@@ -169,6 +197,27 @@ PART_ARM_STATE_MAP = {
     5: 'silent', # 'Silent', ARM_LEVEL only
     8: 'phone_test', # 'Phone Test', PART_DATA only
     9: 'sensor_test', # 'Sensor Test', PART_DATA only
+}
+
+
+# Custom dictionary to give friendly names to zones for display
+# Fill in your zone names here
+FRIENDLY_ZONE_NAME_MAP = {
+    1: "Zone 1",
+    2: "Zone 2",
+    3: "Zone 3",
+    4: "Zone 4",
+    5: "Zone 5",
+    6: "Zone 6",
+    7: "Zone 7",
+    8: "Zone 8",
+    9: "Zone 9",
+    10: "Zone 10",
+    11: "Zone 11",
+    12: "Zone 12",
+    13: "Zone 13",
+    14: "Zone 14",
+    15: "Zone 15"
 }
 
 class Concord4ServerConfig():
@@ -223,6 +272,7 @@ class ConcordSvr(object):
         self.armed = False
         self.event_send_time = int(time.time())
         self.serialPortUrl = config.SERIALPORT
+
         # Zones are keyed by (partitition number, zone number)
         self.zones = { } # zone key -> dict of zone info, i.e. output of cmd_zone_data
         self.zoneDevs = { } # zone key -> active Indigo zone device
@@ -268,6 +318,16 @@ class ConcordSvr(object):
     def logEvent(self, eventInfo, isErr=False):
         event_time = datetime.datetime.now()
         self._logEvent(eventInfo, event_time, self.eventLog, self.eventLogDays)
+
+        # Send an e-mail if we're armed and we have a zone update
+        # This would mean the alarm has detected something
+        if self.armed and 'zone_name' in eventInfo:
+            email_subject = "--- ALARM EVENT: ZONE " + eventInfo['zone_name']
+            email_message = "NEW STATE: " + str(eventInfo['zone_state']) + "\nPREVIOUS STATE: " + str(eventInfo['prev_zone_state']) + "\nCOMMAND: " + str(eventInfo['command'] + "\nDATE: " + str(event_time))
+            log.info("Sending Email... ")
+            log.debug("Email Contents:" + subject + "\n" + message)
+            send_email("my_send_email_as_base_64@gmail.com".decode('base64'), "my_password_as_base_64".decode('base64'), "target_email_as_base_64@somewhere.com".decode('base64'), email_subject, email_message)
+
         if isErr:
             self._logEvent(eventInfo, event_time, self.errLog, self.errLogDays)
 
@@ -287,7 +347,6 @@ class ConcordSvr(object):
             log.info('Panel Information: '+str(variable)+': '+str(state))
         if 'zone' in item:
             pass
-
 
     def startup(self):
         try:
@@ -365,9 +424,15 @@ class ConcordSvr(object):
         if arm_silent and 'disarm' not in action:
             keys += KEYPRESS_SILENT
         if action == 'stay':
-            keys += KEYPRESS_ARM_STAY
+            if not arm_silent:
+                keys += KEYPRESS_ARM_STAY_LOUD
+            else:
+                keys += KEYPRESS_ARM_STAY
         elif action == 'away':
-            keys += KEYPRESS_ARM_AWAY
+            if not arm_silent:
+                keys += KEYPRESS_ARM_AWAY_LOUD
+            else:
+                keys += KEYPRESS_ARM_AWAY
         elif action == 'disarm':
             keys += KEYPRESS_DISARM
         else:
@@ -481,20 +546,15 @@ class ConcordSvr(object):
             self.updateStateOnServer('panel','panelSerialNumber', msg['serial_number'])
             self.updateStateOnServer('panel','panelHwRev', msg['hardware_revision'])
             self.updateStateOnServer('panel','panelSwRev', msg['software_revision'])
-            self.updateStateOnServer('panel','panelZoneMonitorEnabled', self.zoneMonitorEnabled)
-            self.updateStateOnServer('panel','panelZoneMonitorSendEmail', self.zoneMonitorSendEmail)
+            #self.updateStateOnServer('panel','panelZoneMonitorEnabled', self.zoneMonitorEnabled)
+            #self.updateStateOnServer('panel','panelZoneMonitorSendEmail', self.zoneMonitorSendEmail)
 
         elif cmd_id in ('ZONE_DATA', 'ZONE_STATUS'):
             # First update our internal state about the zone
             zone_num = msg['zone_number']
             part_num = msg['partition_number']
             zk = zone_num
-            if 'zone_text' in msg and msg['zone_text'] != '':
-                zone_name = '%s - %r' % (zone_num, msg['zone_text'])
-            elif zk in self.zones and self.zones[zk].get('zone_text', '') != '':
-                zone_name = '%s - %r' % (zone_num, self.zones[zk]['zone_text'])
-            else:
-                zone_name = '%d' % zone_num
+            zone_name = '%d' % zone_num
 
             old_zone_state = "Not known"
             new_zone_state = msg['zone_state']
@@ -513,6 +573,16 @@ class ConcordSvr(object):
                 del zone_info['command_id']
                 self.zones[zk] = zone_info
 
+            # Set zone text to friendly text if none is there
+            if not 'zone_text' in zone_info or zone_info['zone_text'] == '':
+                zone_info['zone_text'] = FRIENDLY_ZONE_NAME_MAP[zk]
+
+            # Determine the zone name friendly if possible
+            if 'zone_text' in msg and msg['zone_text'] != '':
+                zone_name = '%s - %r' % (zone_num, msg['zone_text'])
+            elif zk in self.zones and self.zones[zk].get('zone_text', '') != '':
+                zone_name = '%s - %r' % (zone_num, self.zones[zk]['zone_text'])
+
             # Next sync up any devices that might be for this
             # zone.
             if len(new_zone_state) == 0:
@@ -520,13 +590,13 @@ class ConcordSvr(object):
                 delay = (self.event_send_time - int(time.time()))+1
                 if delay < 0:
                     delay = 0
-                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/closed',senddelay=delay)
+                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/closed',self,senddelay=delay)
                 st_request.start()
             elif FAULTED in new_zone_state or TROUBLE in new_zone_state:
                 zs = 'faulted'
             elif ALARM in new_zone_state:
                 zs = 'alarm'
-                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/open',senddelay=0)
+                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/open',self,senddelay=0)
                 st_request.start()
             elif TRIPPED in new_zone_state:
                 zs = 'open'
@@ -535,7 +605,7 @@ class ConcordSvr(object):
                 if self.armed and (('zone1' in zone) or ('zone2' in zone)):
                     self.event_send_time = int(time.time()) + 30
                     delay = 30
-                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/open',senddelay=delay)
+                st_request = SmartThingsUpdate('zone'+str(zone_num)+'/open',self,senddelay=delay)
                 st_request.start()
             elif BYPASSED in new_zone_state:
                 zs = 'disabled'
@@ -563,7 +633,7 @@ class ConcordSvr(object):
                 log.info('System is DISARMED')
                 self.armed = False
                 self.updateStateOnServer('armstatus','arm_level','disarmed')
-                st_request = SmartThingsUpdate('armstatus/disarmed',senddelay=0)
+                st_request = SmartThingsUpdate('armstatus/disarmed',self,senddelay=0)
                 st_request.start()
             elif int(msg['arming_level_code']) == 2:
                 log.info('System is ARMED to STAY')
@@ -572,7 +642,7 @@ class ConcordSvr(object):
                 delay = (self.event_send_time - int(time.time()))+1
                 if delay < 0:
                     delay = 0
-                st_request = SmartThingsUpdate('armstatus/armed_stay',senddelay=delay)
+                st_request = SmartThingsUpdate('armstatus/armed_stay',self,senddelay=delay)
                 st_request.start()
             elif int(msg['arming_level_code']) == 3:
                 log.info('System is ARMED to AWAY')
@@ -581,7 +651,7 @@ class ConcordSvr(object):
                 if delay < 0:
                     delay = 0
                 self.updateStateOnServer('armstatus','arm_level','armed_away')
-                st_request = SmartThingsUpdate('armstatus/armed_away',senddelay=delay)
+                st_request = SmartThingsUpdate('armstatus/armed_away',self,senddelay=delay)
                 st_request.start()
 
         elif cmd_id in ('PART_DATA', 'FEAT_STATE', 'DELAY', 'TOUCHPAD'):
@@ -824,6 +894,7 @@ class ConcordHTTPServer(asyncore.dispatcher,Thread):
         path = query.path
         authorized = False
         header_str = str(header)
+        userpw = ''
         #check auth
         for line in header_str.splitlines():
             if 'Authorization: Basic' in str(line):
@@ -879,30 +950,35 @@ class ConcordHTTPServer(asyncore.dispatcher,Thread):
                 channel.push("\r\n")
         except Exception as ex:
             tb = traceback.format_exc()
-            logger('Exception! '+ str(ex.message)+str(tb))
+            logger('HTTP Server Exception: '+ str(ex.message))
+            log.debug('TRACEBACK:'+str(tb))
 
 class SmartThingsUpdate(Thread):
 
-    def __init__(self,url,method='get',senddelay=0):
+    def __init__(self,url,concordSvr,method='get',senddelay=0):
         super(SmartThingsUpdate, self).__init__()
         self.daemon = True
         """Initialize"""
         self.url = url
         self.method = method
         self.senddelay = senddelay
-        logger('delay:'+str(senddelay))
-        logger('url:'+self.url)
+        self.concord_interface = concordSvr
+        log.debug('delay:'+str(senddelay))
+        log.debug('url:'+self.url)
     def run(self):
         st_URL_prefix = config.CALLBACKURL_BASE + "/" + config.CALLBACKURL_APP_ID + "/concord/" + str(config.CALLBACKURL_CONCORD_DEVICE_ID) + "/"
         headers = {'Authorization': 'Bearer {}'.format(config.CALLBACKURL_ACCESS_TOKEN)}
         try:
             if 'get' in self.method:
                 time.sleep(self.senddelay) #dont update smartthings, wait until panel is disarmed
-                requests.get(st_URL_prefix+self.url,timeout=20,headers=headers)
+                r = requests.get(st_URL_prefix+self.url,timeout=20,headers=headers)
                 logger('TX -> '+st_URL_prefix+self.url)
+                if (r.status_code != 200):
+                    logger('ST TX Failed: ' + str(r.status_code)+' url:'+self.url)
         except Exception as ex:
             tb = traceback.format_exc()
-            logger('Exception! '+ str(ex.message)+str(tb)+'url:'+self.url)
+            logger('ST TX Exception: '+ str(ex.message)+'url:'+self.url)
+            log.debug('TRACEBACK:'+str(tb))
 
 if __name__ == '__main__':
     args = sys.argv[1:]
