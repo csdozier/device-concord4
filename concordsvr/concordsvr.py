@@ -325,7 +325,7 @@ class ConcordSvr(object):
             email_subject = "--- ALARM EVENT: ZONE " + eventInfo['zone_name']
             email_message = "NEW STATE: " + str(eventInfo['zone_state']) + "\nPREVIOUS STATE: " + str(eventInfo['prev_zone_state']) + "\nCOMMAND: " + str(eventInfo['command'] + "\nDATE: " + str(event_time))
             log.info("Sending Email... ")
-            log.debug("Email Contents:" + subject + "\n" + message)
+            log.debug("Email Contents:" + email_subject + "\n" + email_message)
             send_email("my_send_email_as_base_64@gmail.com".decode('base64'), "my_password_as_base_64".decode('base64'), "target_email_as_base_64@somewhere.com".decode('base64'), email_subject, email_message)
 
         if isErr:
