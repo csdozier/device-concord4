@@ -1,7 +1,7 @@
 /**
  *  Virtual Contact
  *
- *  Copyright 2014 CaesarsGhost
+ *  Copyright 2014 scdozier
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -15,7 +15,7 @@
  */
 
 metadata {
-	definition (name: "Concord4 Virtual Smoke", namespace: "scdozier", author: "CaesarsGhost") {
+	definition (name: "Concord4 Virtual Smoke", namespace: "scdozier", author: "scdozier") {
     capability "Contact Sensor"
     capability "Smoke Detector"
     command "open"
@@ -28,8 +28,8 @@ metadata {
    tiles (scale: 2){
       multiAttributeTile(name:"ContactTile", type:"generic", width:6, height:4) {
         tileAttribute("device.smokeDetector", key: "PRIMARY_CONTROL") {
-            attributeState("clear", label: '${name}', icon: "st.alarm.smoke.clear", backgroundColor: "#ffa81e")
- 			attributeState("detected", label: '${name}', icon: "st.alarm.smoke.smoke", backgroundColor: "#79b821")
+            attributeState("clear", label: '${name}', icon: "st.alarm.smoke.clear", backgroundColor: "#ffffff")
+ 			attributeState("detected", label: '${name}', icon: "st.alarm.smoke.smoke", backgroundColor: "#e86d13")
         }
    			tileAttribute("device.armStatus", key: "SECONDARY_CONTROL") {
     			attributeState("default", label:'${currentValue}')

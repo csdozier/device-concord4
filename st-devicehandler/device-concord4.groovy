@@ -33,75 +33,76 @@ metadata {
 	tiles (scale: 2){
       multiAttributeTile(name:"ArmTile", type:"generic", width:6, height:4) {
         tileAttribute("device.lock", key: "PRIMARY_CONTROL") {
-            attributeState("unlocked", label: 'DISARMED', action: "armstay", icon: "st.Home.home3", backgroundColor: "#79b821", nextState: "locking")
- 			attributeState("locking", label: 'ARMING', action: "armstay", icon: "st.Home.home3", backgroundColor: "#ffa81e")
- 			attributeState("unlocking", label: 'DISARMING', action: "armstay", icon: "st.Home.home3", backgroundColor: "#ffa81e")
-            attributeState("locked", label: 'ARMED', action: "Disarm", icon: "st.Home.home3", backgroundColor: "#ff381e")
+            attributeState("unlocked", label: 'DISARMED', action: "armstay", icon: "st.security.alarm.off", backgroundColor: "#cccccc", nextState: "locking")
+ 			attributeState("locking", label: 'ARMING', action: "armstay", icon: "st.security.alarm.partial", backgroundColor: "#e86d13")
+ 			attributeState("unlocking", label: 'DISARMING', action: "armstay", icon: "st.security.alarm.partial", backgroundColor: "#e86d13")
+            attributeState("locked", label: 'ARMED', action: "Disarm", icon: "st.security.alarm.on", backgroundColor: "#bc2323")
         }
    			tileAttribute("device.armStatus", key: "SECONDARY_CONTROL") {
     			attributeState("default", label:'${currentValue}')
   			}
         }
         standardTile("silent", "device.silent", width: 2, height: 2,canChangeIcon: true, inactiveLabel: false) {        						
-			state "silent", label: 'silent', action:"armLoud", icon: "st.Outdoor.outdoor9", backgroundColor: "#ffa81e" , nextState : "loud"   
-            state "loud", label: 'loud', action: "armSilent", icon: "st.Outdoor.outdoor10", backgroundColor: "#79b821" , nextState: "silent"           
+			state "silent", label: 'silent', action:"armLoud", icon: "st.custom.sonos.muted", backgroundColor: "#ffffff" , nextState : "loud"   
+            state "loud", label: 'loud', action: "armSilent", icon: "st.custom.sonos.unmuted", backgroundColor: "#00a0dc" , nextState: "silent"           
 		}        
         standardTile("bypass", "device.bypass", width: 2, height: 2, canChangeIcon: true,inactiveLabel: false) {        						
-			state "disable", label: 'Disabled', action: "armBypass", icon: "st.Outdoor.outdoor10", backgroundColor: "#79b821" , nextState: "enable"
-			state "enable", label: 'Enabled', action:"armRegular", icon: "st.Outdoor.outdoor9", backgroundColor: "#ffa81e" , nextState: "disable"  
+			state "disable", label: 'Disabled', action: "armBypass", icon: "st.secondary.tools", backgroundColor: "#ffffff" , nextState: "enable"
+			state "enable", label: 'Enabled', action:"armRegular", icon: "st.secondary.tools", backgroundColor: "#00a0dc" , nextState: "disable"  
 		}                
         standardTile("Zone 1", "device.zone1", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
-        	state "closed", label: 'Garage Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-			state "open", label: 'Garage Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+        	state "closed", label: 'Garage Door\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+			state "open", label: 'Garage Door\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"			
 		}  
         standardTile("Zone 2", "device.zone2",  width: 2, height: 2,inactiveLabel: false, decoration: "flat") {			
-			state "closed", label: 'Front Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Front Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Front Door\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Front Door\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 3", "device.zone3", width: 2, height: 2, inactiveLabel: false,decoration: "flat") {
-        	state "closed", label: 'Back Door\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-			state "open", label: 'Back Door\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+        	state "closed", label: 'Back Door\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+			state "open", label: 'Back Door\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"			
 		}  
         standardTile("Zone 4", "device.zone4",  width: 2, height: 2,inactiveLabel: false) {			
-			state "closed", label: 'Living Room\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Living Room\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Living Room\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Living Room\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 5", "device.zone5",  width: 2, height: 2,inactiveLabel: false) {			
-			state "closed", label: 'Family Room\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Family Room\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Family Room\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Family Room\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 6", "device.zone6", width: 2, height: 2, inactiveLabel: false) {			
-			state "closed", label: 'Kitchen Window\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Kitchen Window', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Kitchen Window\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Kitchen Window', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 7", "device.zone7", width: 2, height: 2, inactiveLabel: false) {
-        	state "closed", label: 'Kitchen Glass Break', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-			state "open", label: 'Kitchen Glass Break', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+        	state "closed", label: 'Kitchen Glass Break', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+			state "open", label: 'Kitchen Glass Break', icon: "st.contact.contact.open", backgroundColor: "#e86d13"			
 		}  
         standardTile("Zone 8", "device.zone8",  width: 2, height: 2,inactiveLabel: false) {			
-			state "closed", label: 'Foyer Motion\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Foyer Motion\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Foyer Motion\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Foyer Motion\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 9", "device.zone9",  width: 2, height: 2,inactiveLabel: false) {
-        	state "closed", label: 'Downstairs Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-			state "open", label: 'Downstairs Fire\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"			
+        	state "closed", label: 'Downstairs Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+			state "open", label: 'Downstairs Fire\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"			
 		}  
         standardTile("Zone 10", "device.zone10", width: 2, height: 2, inactiveLabel: false) {			
-			state "closed", label: 'Bedroom Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Bedroom Fire\n', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
-		}  
+			state "closed", label: 'Bedroom Fire\n', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Bedroom Fire\n', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
+		}
         standardTile("Zone 13", "device.zone13",  width: 2, height: 2,inactiveLabel: false) {			
-			state "closed", label: 'Office Window 1', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Office Window 1', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Office Window 1', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Office Window 1', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 14", "device.zone14", width: 2, height: 2, inactiveLabel: false) {			
-			state "closed", label: 'Office Window 2', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Office Window 2', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Office Window 2', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Office Window 2', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
         standardTile("Zone 15", "device.zone15",  width: 2, height: 2,inactiveLabel: false) {			
-			state "closed", label: 'Office Window 3', icon: "st.contact.contact.closed", backgroundColor: "#79b821"
-            state "open", label: 'Office Window 3', icon: "st.contact.contact.open", backgroundColor: "#ffa81e"
+			state "closed", label: 'Office Window 3', icon: "st.contact.contact.closed", backgroundColor: "#00a0dc"
+            state "open", label: 'Office Window 3', icon: "st.contact.contact.open", backgroundColor: "#e86d13"
 		}  
+
 		standardTile("refresh", "device.alarmMode", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
 			state "default", action:"polling.poll", icon:"st.secondary.refresh"
         }
@@ -163,7 +164,9 @@ def updated()
 
 
 // handle commands
-def poll() {
+def poll()
+{
+    return request('/refresh')
 }
 
 def armSilent()

@@ -1,7 +1,7 @@
 /**
  *  Virtual Motion Detector
  *
- *  Copyright 2014 CaesarsGhost
+ *  Copyright 2014 scdozier
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -15,7 +15,7 @@
  */
 
 metadata {
-	definition (name: "Concord4 Virtual Motion Detector", namespace: "scdozier", author: "CaesarsGhost") {
+	definition (name: "Concord4 Virtual Motion Detector", namespace: "scdozier", author: "scdozier") {
     capability "Contact Sensor"
     command "open"
     command "closed"    
@@ -27,8 +27,8 @@ metadata {
 
 	tiles {
         standardTile("motion", "device.motion", inactiveLabel: false) {
-			state "inactive", label: '${name}', icon: "st.motion.motion.inactive", backgroundColor: "#ffa81e"
-			state "active", label: '${name}', icon: "st.motion.motion.active", backgroundColor: "#79b821"
+			state "inactive", label: '${name}', icon: "st.motion.motion.inactive", backgroundColor: "#ffffff"
+			state "active", label: '${name}', icon: "st.motion.motion.active", backgroundColor: "#00a0dc"
 		}  
 	}
     
