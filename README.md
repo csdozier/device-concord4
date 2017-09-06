@@ -37,10 +37,10 @@ This is a project for connecting the Concord 4 alarm system to SmartThings.  You
  19.  Click **App Settings** then Oauth, the **Enable Oauth in Smart App**
  20.  Write down the **Client ID** and **Client Secret**
  21.  Open a web browser window in private mode (incognito).  Navigate to this URL into your browser, substituting in the Client Id:
- <code>
-=<Client ID>&scope=app&redirect_uri=https%3A%2F%2Fgraph-xx.api.smartthings.com%2Foauth%2Fcallback
-</code>
-    If you are prompted to login to SmartThinhttps://graph-xx.api.smartthings.com/oauth/authorize?response_type=code&client_idgs, go ahead.
+ 
+https://graph-xx.api.smartthings.com/oauth/authorize?response_type=code&client_id=YOUR-SMARTAPP-CLIENT-ID&scope=app&redirect_uri=https%3A%2F%2Fgraph-xx.api.smartthings.com%2Foauth%2Fcallback
+
+    If you are prompted to login to SmartThings, go ahead.
     Select you location from the drop down list and the receiver you want to have access to through the REST API
     Click the Authorize button.
     You'll be redirected to a URL that looks like this: http://localhost/?code=<Code>
@@ -48,9 +48,9 @@ This is a project for connecting the Concord 4 alarm system to SmartThings.  You
     Copy the Code from the URL for later use.
 
  22. On the Raspberry Pi (or another Linux box), execute the command (substituting Client Id, Client Secret and the Code from the previous step in):
- <code>
-    curl -k "https://graph-xx.api.smartthings.com/oauth/token?grant_type=authorization_code&client_id=<Client Id>&client_secret=<Client Secret>&code=<Code>&scope=app&redirect_uri=https%3A%2F%2Fgraph.api.smartthings.com%2Foauth%2Fcallback"
-    </code>
+ 
+    curl -k "https://graph-xx.api.smartthings.com/oauth/token?grant_type=authorization_code&client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET&code=YOUR_CODE&scope=app&redirect_uri=https%3A%2F%2Fgraph.api.smartthings.com%2Foauth%2Fcallback"
+    
  23. The response to this will contain an ID that will be your OAuth **API Token**, record this
  24. Open the Smarthings app on your mobile device. Select 'Marketplace', 'SmartApps', 'My Apps' and then 'Concord 4 Integration'. Select the alarm device (created in step 10) for 'Which?', and then select the correct device type for each zone. For example, contact sensors use virtual contact devices, fire detectors use virtual smoke etc. and install it
  25. Login to your Pi and install python and the packages via pip (if not already installed). Note that default raspbian comes with it, as does NOOBS
