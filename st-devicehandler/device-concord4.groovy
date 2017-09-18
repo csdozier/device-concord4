@@ -18,6 +18,7 @@ metadata {
         command "armBypass"
         command "armRegular"
         command "update"
+        command "setZonesClosed"
         
         attribute "armStatus", "string"
 	}
@@ -105,18 +106,41 @@ metadata {
 
 		standardTile("refresh", "device.alarmMode", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
 			state "default", action:"polling.poll", icon:"st.secondary.refresh"
-        }
+        	}
+	standardTile("setZonesClosedTile", "device.alarmMode", width: 2, height: 2, inactiveLabel: false, decoration: "flat") {
+			state "default", label: 'Zones Closed', action:"setZonesClosed", icon:"st.secondary.refresh"
+        	}
 	}
     
     main "ArmTile"
     details(["ArmTile","Zone 1", "Zone 2", "Zone 3", "Zone 4", "Zone 5", "Zone 6", "Zone 7", "Zone 8", "Zone 9", "Zone 10", "Zone 13",
-    "Zone 14","Zone 15", "refresh", "silent" ])
+    "Zone 14","Zone 15", "refresh", "silent","setZonesClosedTile" ])
 }
 
 // parse events into attributes
 def parse(String description) {
 	log.debug "Parsing '${description}'"
  
+}
+
+def setZonesClosed()
+{
+	sendEvent(name: "zone1", value: "closed")
+	sendEvent(name: "zone2", value: "closed")
+	sendEvent(name: "zone3", value: "closed")
+	sendEvent(name: "zone4", value: "closed")
+	sendEvent(name: "zone5", value: "closed")
+	sendEvent(name: "zone6", value: "closed")
+	sendEvent(name: "zone7", value: "closed")
+	sendEvent(name: "zone8", value: "closed")
+	sendEvent(name: "zone9", value: "closed")
+	sendEvent(name: "zone10", value: "closed")
+	sendEvent(name: "zone11", value: "closed")
+	sendEvent(name: "zone12", value: "closed")
+	sendEvent(name: "zone13", value: "closed")
+	sendEvent(name: "zone14", value: "closed")
+	sendEvent(name: "zone15", value: "closed")
+
 }
 
 def update(attribute,state) {
