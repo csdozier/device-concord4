@@ -1,7 +1,7 @@
 /**
  *  Virtual Motion Detector
  *
- *  Copyright 2014 scdozier
+ *  Copyright 2017 scdozier
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -17,8 +17,11 @@
 metadata {
 	definition (name: "Concord4 Virtual Motion Detector", namespace: "scdozier", author: "scdozier") {
     capability "Contact Sensor"
+    capability "Motion Sensor"
     command "open"
     command "closed"    
+    command "active"
+    command "inactive"
 	}
 
 	simulator {
@@ -50,3 +53,4 @@ def parse(String description) {
 	return NULL
 
 }
+
