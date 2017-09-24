@@ -41,12 +41,12 @@ metadata {
 
 def open( String name ) {
 	log.debug "Open"   
-    sendEvent (name: "motion", value: "inactive" )
+    sendEvent (name: "motion", value: "active" )
 }
 
 def closed( String name ) {
 	log.debug "Close"
-    sendEvent (name: "motion", value: "active" )
+    sendEvent (name: "motion", value: "inactive" )
 }
 // parse events into attributes
 def parse(String description) {
