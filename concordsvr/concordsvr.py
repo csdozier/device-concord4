@@ -367,7 +367,7 @@ class ConcordSvr(object):
             self.panel.register_message_handler(cmd_id, self.panelMessageHandler)
 
         self.refreshPanelState("Concord 4 panel device startup")
-        st_request = SmartThingsUpdate('armstatus/disarmed',senddelay=0)
+        st_request = SmartThingsUpdate('armstatus/disarmed',self,senddelay=0)
         st_request.start()
     def refreshPanelState(self, reason):
         """
