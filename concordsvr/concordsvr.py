@@ -411,6 +411,7 @@ class ConcordSvr(object):
         log.info("Concord4 Arm/Disarm to %s, bypass=%s, silent=%s" % (action, str(bypasszone), str(arm_silent)))
 
         can_arm, reason = self.isReadyToArm(partition_num)
+        can_arm, reason = self.isReadyToArm(partition_num)
         if not can_arm:
             errors['partition'] = reason
             log.error('Panel not ready to arm')
@@ -424,6 +425,9 @@ class ConcordSvr(object):
         keys = [ ]
         if arm_silent and 'disarm' not in action:
             keys += KEYPRESS_SILENT
+        elif arm_silent and 'disarm' in action:
+            keys += KEYPRESS_SILENT
+            keys += KEYPRESS_ARM_STAY
         if action == 'stay':
             if not arm_silent:
                 keys += KEYPRESS_ARM_STAY_LOUD
@@ -438,11 +442,9 @@ class ConcordSvr(object):
             keys += KEYPRESS_DISARM
         else:
             pass
-
-            #assert False, "Unknown arming action type"
-
         if bypasszone:
             keys += KEYPRESS_BYPASS
+
         try:
             self.panel.send_keypress(keys, partition_num)
         except Exception, ex:
